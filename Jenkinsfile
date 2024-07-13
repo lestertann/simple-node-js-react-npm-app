@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+            	if (sh(returnStatus: true, script: 'npm ci')) {
+                	sh 'npm install'
             }
         }
         stage('Test') {
